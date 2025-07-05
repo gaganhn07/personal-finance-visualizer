@@ -12,15 +12,3 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Failed to load transactions' }, { status: 500 });
   }
 }
-
-export async function POST(req: NextRequest) {
-  try {
-    await connectToDatabase();
-    const body = await req.json();
-    const transaction = await Transaction.create(body);
-    return NextResponse.json(transaction);
-  } catch (error) {
-    console.error('POST error:', error);
-    return NextResponse.json({ error: 'Failed to create transaction' }, { status: 500 });
-  }
-}
