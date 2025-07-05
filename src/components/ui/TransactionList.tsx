@@ -1,4 +1,4 @@
-// File: src/components/ui/TransactionList.tsx
+
 'use client';
 
 import React from 'react';
