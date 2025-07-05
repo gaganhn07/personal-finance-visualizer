@@ -2,9 +2,9 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 export default function BudgetChart({ budgets, transactions }: any) {
-  const currentMonth = new Date().toISOString().slice(0, 7); // e.g., "2025-07"
+  const currentMonth = new Date().toISOString().slice(0, 7); 
 
-  // Step 1: Actual Spent per Category (filtered by current month)
+  
   const actualSpending: Record<string, number> = {};
   transactions.forEach((tx: any) => {
     const txMonth = tx.date.slice(0, 7);
@@ -13,10 +13,10 @@ export default function BudgetChart({ budgets, transactions }: any) {
     actualSpending[cat] = (actualSpending[cat] || 0) + tx.amount;
   });
 
-  // Step 2: Combine Budgeted + Actual
+  
   const categoryMap: Record<string, { category: string; Budgeted: number; Spent: number }> = {};
 
-  // Fill from budgets
+  
   budgets
     .filter((b: any) => b.month === currentMonth)
     .forEach((b: any) => {
@@ -27,7 +27,7 @@ export default function BudgetChart({ budgets, transactions }: any) {
       };
     });
 
-  // Fill remaining categories only in Spent
+  
   for (const category in actualSpending) {
     if (!categoryMap[category]) {
       categoryMap[category] = {
